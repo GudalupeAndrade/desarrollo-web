@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "userMaria",
+    "password": "superpassword",
+    "database": "rentadepropiedades",
+    "host": "localhost",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "userMaria",
+    "password": "superpassword",
+    "database": "rentadepropiedades_test",
+    "host": "localhost",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "userMaria",
+    "password": "superpassword",
+    "database": "rentadepropiedades_production",
+    "host": "localhost",
+    "dialect": "mysql"
+  }
+}
