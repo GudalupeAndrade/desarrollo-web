@@ -10,7 +10,8 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      models.Personas.belongsToMany(models.Propiedads,{through: models.Propietarios,as:"propiedades"})
+      models.Personas.belongsToMany(models.Propiedads, {through: models.Arrendatarios})
     }
   }
   Persona.init({
@@ -24,12 +25,19 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     sequelize,
-    modelName: 'Persona',
-    tableName: 'Personas',
+    modelName: 'Personas',
+    tableName: 'personas',
     name: {
       singular:'persona',
       plural: 'personas'
     }
   });
+//Relacion Muchos aMuchos
+  // Persona.associate=function(models){
+   // Persona.belongsToMany(models.propiedad,{
+   // through: models.propietario
+  //  });
+//  };
+
   return Persona;
 };

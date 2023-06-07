@@ -1,9 +1,9 @@
 const models = require('../Renta-Relaciones/models');
 
 const create = async function(RFC,Nombre)
-{
+{  
  
-    const Persona = await models.Persona.create(
+    const Persona = await models.Personas.create(
         {
             RFC:RFC,
             Nombre:Nombre,
@@ -17,34 +17,51 @@ const create = async function(RFC,Nombre)
 }
 
 
-const eliminarPersona = async function(findid)
+const eliminarPersona = async function(RFC)
 {
-    const propied = await models.Persona.findOne({
+    const valor = await models.Personas.findOne({
         where:{
-            id:findid
+            RFC:RFC
         }
     });
 
-    await propied.destroy();
+    await valor.destroy();
 }
 
 const leerPersonas = async function()
 {
-    let propieds = await models.Persona.findAll({});
-    //console.log(JSON.stringify(propieds));
-    return propieds;
+    let valor = await models.Personas.findAll({});
+    //console.log(JSON.stringify(valor));
+    return valor;
 }
-const leerPersona = async function(findid)
+const leerPersona = async function(RFC)
 {
-    let propieds = await models.Persona.findOne(findid);
-    //console.log(JSON.stringify(propieds));
-    return propieds;
+    const valor = await models.Personas.findOne({
+        where:{
+            RFC:RFC
+        }
+    });
+
+    return valor;
 }
 
+const modificarPersona=async function(id,RFC,Nombre)
+{  
+    const valor = await models.Personas.findByPk(id)
+
+    await valor.update({
+        RFC:RFC,
+        Nombre:Nombre,
+        updateAt: new Date()
+
+    });
+    console.log(JSON.stringify(valor));
+        return valor
+}
 
 
 module.exports.leerPersonas=leerPersonas;
 module.exports.leerPersona=leerPersona;
 module.exports.eliminarPersona=eliminarPersona;
 module.exports.create=create;
-
+module.exports.modificarPersona=modificarPersona;

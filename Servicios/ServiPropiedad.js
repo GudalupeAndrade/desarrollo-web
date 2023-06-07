@@ -3,7 +3,7 @@ const models = require('../Renta-Relaciones/models');
 const create = async function(cve_catastral,descripcion,direccion)
 {  
  
-    const Propiedad = await models.propiedad.create(
+    const Propiedad = await models.Propiedads.create(
         {
             cve_catastral:cve_catastral,
             descripcion:descripcion,
@@ -18,11 +18,11 @@ const create = async function(cve_catastral,descripcion,direccion)
 }
 
 
-const eliminarPropiedad = async function(findid)
+const eliminarPropiedad = async function(clave)
 {
-    const propied = await models.propiedad.findOne({
+    const propied = await models.Propiedads.findOne({
         where:{
-            id:findid
+            cve_catastral:clave
         }
     });
 
@@ -31,21 +31,39 @@ const eliminarPropiedad = async function(findid)
 
 const leerPropiedades = async function()
 {
-    let propieds = await models.propiedad.findAll({});
+    let propieds = await models.Propiedads.findAll({});
     //console.log(JSON.stringify(propieds));
     return propieds;
 }
-const leerPropiedad = async function(findid)
+const leerPropiedad = async function(clave)
 {
-    let propieds = await models.propiedad.findOne(findid);
-    //console.log(JSON.stringify(propieds));
+    const propieds = await models.Propiedads.findOne({
+        where:{
+            cve_catastral:clave
+        }
+    });
+
     return propieds;
 }
 
+const modificarPropiedad=async function(id,cve_catastral,descripcion,direccion)
+{  
+    const propied = await models.Propiedads.findByPk(id)
+
+    await propied.update({
+        cve_catastral:cve_catastral,
+        descripcion:descripcion,
+        direccion:direccion,
+        updateAt: new Date()
+
+    });
+    console.log(JSON.stringify(propied));
+        return propied
+}
 
 
 module.exports.leerPropiedades=leerPropiedades;
 module.exports.leerPropiedad=leerPropiedad;
 module.exports.eliminarPropiedad=eliminarPropiedad;
 module.exports.create=create;
-
+module.exports.modificarPropiedad=modificarPropiedad;

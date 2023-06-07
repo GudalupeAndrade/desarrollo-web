@@ -11,22 +11,28 @@ const totalPropiedades = async function (req, res) {
     let datos = await propiedades.leerPropiedades();
     await res.json(datos);
 }
- const leerPropiedad =async function (){
-    let nuevo = { id:req.query.id};
-    let datos = await propiedades.leerPropiedad(nuevo.id);
+ const leerPropiedad =async function (req,res){
+    let nuevo = { cve_catastral:req.params.cve_catastral};
+    let datos = await propiedades.leerPropiedad(nuevo.cve_catastral);
     await res.json(datos);
 
  }
 const eliminarPropiedad = async function (req, res) {
-    let nuevo = { id: req.query.id};
-    let datos = await propiedades.eliminarPropiedad(nuevo.id);
+    let nuevo = { cve_catastral: req.params.cve_catastral};
+    let datos = await propiedades.eliminarPropiedad(nuevo.cve_catastral);
     await res.json(datos);
 
 }
 
+const modificarPropiedad = async function (req, res) {
+    let nuevo = {id: req.params.id, cve_catastral: req.query.cve_catastral, descripcion: req.query.descripcion,direccion:req.query.direccion };
+    let datos = await propiedades.modificarPropiedad(nuevo.id,nuevo.cve_catastral,nuevo.descripcion,nuevo.direccion);
+    await res.json(datos);
 
+}
 
 module.exports.CrearPropiedad = CrearPropiedad;
+module.exports.modificarPropiedad = modificarPropiedad;
 module.exports.totalPropiedades = totalPropiedades;
 module.exports.eliminarPropiedad = eliminarPropiedad;
 module.exports.leerPropiedad= leerPropiedad;

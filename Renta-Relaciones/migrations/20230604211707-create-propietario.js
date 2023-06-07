@@ -1,8 +1,8 @@
 'use strict';
-/** @type {import('sequelize-cli').Migration} */
+///** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Propietarios', {
+  up: (queryInterface, Sequelize)=> {
+    return queryInterface.createTable('Propietarios', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -12,8 +12,8 @@ module.exports = {
       Persona_id: {
         type: Sequelize.INTEGER,
         references:{
-          model: "personas",
-          key:"id"
+         model: "personas",
+        key:"id"
         },
 
       },
@@ -21,8 +21,8 @@ module.exports = {
         type: Sequelize.INTEGER,    
         references:{
           model: "propiedads",
-          key:"id"
-        },
+        key:"id"
+      },
       },
       createdAt: {
         allowNull: false,
@@ -34,7 +34,7 @@ module.exports = {
       }
     });
   },
-  async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Propietarios');
+  down:(queryInterface, Sequelize) => {
+    return queryInterface.dropTable('Propietarios');
   }
 };

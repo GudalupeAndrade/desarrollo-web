@@ -1,9 +1,9 @@
 const personas = require("../Servicios/ServiPersona");
 
 const CrearPersona = async function (req, res) {
-    let nuevo = { RFC:req.query.RFC,Nombre:req.query.Nombre };
+    let nuevo = { RFC: req.query.clave, nombre: req.query.descripcio };
 
-    await personas.create(nuevo.RFC,nuevo.Nombre);
+    await personas.create(nuevo.RFC,nuevo.nombre,nuevo.direccion);
     await res.json("Persona Agregada");
 }
 
@@ -11,22 +11,28 @@ const totalPersonas = async function (req, res) {
     let datos = await personas.leerPersonas();
     await res.json(datos);
 }
- const leerPersona =async function (){
-    let nuevo = { id:req.query.id};
-    let datos = await personas.leerPersona(id);
+ const leerPersona =async function (req,res){
+    let nuevo = { RFC:req.params.RFC};
+    let datos = await personas.leerPersona(nuevo.RFC);
     await res.json(datos);
 
  }
 const eliminarPersona = async function (req, res) {
-    let nuevo = { id: req.query.id};
-    let datos = await personas.eliminarPersona(id);
+    let nuevo = { RFC: req.params.RFC};
+    let datos = await personas.eliminarPersona(nuevo.RFC);
     await res.json(datos);
 
 }
 
+const modificarPersona = async function (req, res) {
+    let nuevo = {id: req.params.id, RFC: req.query.RFC, nombre: req.query.nombre};
+    let datos = await personas.modificarPersona(nuevo.id,nuevo.RFC,nuevo.nombre);
+    await res.json(datos);
 
+}
 
 module.exports.CrearPersona = CrearPersona;
+module.exports.modificarPersona = modificarPersona;
 module.exports.totalPersonas = totalPersonas;
 module.exports.eliminarPersona = eliminarPersona;
 module.exports.leerPersona= leerPersona;

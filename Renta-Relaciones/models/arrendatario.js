@@ -25,8 +25,8 @@ module.exports = (sequelize, DataTypes) => {
     
   }, {
     sequelize,
-    modelName: 'Arrendatario',
-    tableName: 'Arrendatarios',
+    modelName: 'Arrendatarios',
+    tableName: 'arrendatarios',
     name: {
       singular:'arrendatario',
       plural: 'arrendatarios'

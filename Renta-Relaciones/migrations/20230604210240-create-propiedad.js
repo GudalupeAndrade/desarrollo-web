@@ -1,8 +1,8 @@
 'use strict';
-/** @type {import('sequelize-cli').Migration} */
+//** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Propiedads', {
+  up: (queryInterface, Sequelize)=> {
+    return queryInterface.createTable('Propiedads', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -10,13 +10,18 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       cve_catastral: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull:false,
+        unique:true
       },
       descripcion: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull:true
+
       },
       direccion: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull:true
       },
       createdAt: {
         allowNull: false,
@@ -28,7 +33,7 @@ module.exports = {
       }
     });
   },
-  async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Propiedads');
+  down:(queryInterface, Sequelize) => {
+    return queryInterface.dropTable('Propiedads');
   }
 };
