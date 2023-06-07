@@ -11,6 +11,7 @@ const metPropiet = require("./Controladores/ContPropiet")
 const metPropiedades = require("./Controladores/ContPropied")
 const metArrendatarios = require("./Controladores/ContrArrend")
 const metPersonas = require("./Controladores/ContPersona")
+
 const credenciales ={
 
    key:llavePrivada,

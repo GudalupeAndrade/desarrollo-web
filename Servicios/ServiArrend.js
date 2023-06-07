@@ -3,7 +3,7 @@ const models = require('../Renta-Relaciones/models');
 const asignarArrendatario = async function(Propiedad_id,Persona_id)
 {
  
-    const arrendatario = await models.arrendatario.create(
+    const Arrendatario = await models.Arrendatario.create(
         {
             Propiedad_id:Propiedad_id,
             Persona_id:Persona_id,
@@ -12,14 +12,14 @@ const asignarArrendatario = async function(Propiedad_id,Persona_id)
             
         }
     );
-    console.log(JSON.stringify(arrendatario));
-        return arrendatario
+    console.log(JSON.stringify(Arrendatario));
+        return Arrendatario
 }
 
 
 const eliminarArrendatario = async function(findid)
 {
-    const propied = await models.arrendatario.findOne({
+    const propied = await models.Arrendatario.findOne({
         where:{
             id:findid
         }
@@ -30,13 +30,13 @@ const eliminarArrendatario = async function(findid)
 
 const leerArrendatarios = async function()
 {
-    let propieds = await models.arrendatario.findAll({});
+    let propieds = await models.Arrendatario.findAll({});
     //console.log(JSON.stringify(propieds));
     return propieds;
 }
 const leerArrendatario = async function(findid)
 {
-    let propieds = await models.arrendatario.findOne(findid);
+    let propieds = await models.Arrendatario.findOne(findid);
     //console.log(JSON.stringify(propieds));
     return propieds;
 }

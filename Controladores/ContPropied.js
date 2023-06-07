@@ -13,13 +13,13 @@ const totalPropiedades = async function (req, res) {
 }
  const leerPropiedad =async function (){
     let nuevo = { id:req.query.id};
-    let datos = await propiedades.leerPropiedad(id);
+    let datos = await propiedades.leerPropiedad(nuevo.id);
     await res.json(datos);
 
  }
 const eliminarPropiedad = async function (req, res) {
     let nuevo = { id: req.query.id};
-    let datos = await propiedades.eliminarPropiedad(id);
+    let datos = await propiedades.eliminarPropiedad(nuevo.id);
     await res.json(datos);
 
 }

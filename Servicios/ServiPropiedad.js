@@ -1,7 +1,7 @@
 const models = require('../Renta-Relaciones/models');
 
 const create = async function(cve_catastral,descripcion,direccion)
-{
+{  
  
     const Propiedad = await models.propiedad.create(
         {
