@@ -1,8 +1,8 @@
 {
   "development": {
-    "username": "userMaria",
-    "password": "superpassword",
-    "database": "rentadepropiedades",
+    "username": "root",
+    "password": "a1234567",
+    "database": "prueba2",
     "host": "localhost",
     "dialect": "mysql"
   },

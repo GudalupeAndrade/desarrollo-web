@@ -3,12 +3,13 @@ const models = require('../Renta-Relaciones/models');
 
 const asignar = async function(Persona_id,id_Propiedad)
 {
- 
-    const Propiedad=await models.Propiedads.findByPk(id_Propiedad);
-    const Persona=await models.Personas.findByPk(Persona_id);
+    const per=await models.Persona.findByPk(Persona_id);
+    const prop=await models.Propiedad.findByPk(id_Propiedad);
+    
+    await per.addPropiedades(prop);
+  return "Si";
+};
 
-  await Propiedad.addPropietarios(Persona)
-  return Propiedad;
-}
+
 
 module.exports.asignar=asignar;

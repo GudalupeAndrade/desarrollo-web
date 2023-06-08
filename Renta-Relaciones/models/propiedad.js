@@ -3,22 +3,20 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Propiedads extends Model {
+  class Propiedad extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      models.Propiedads.belongsToMany(models.Personas, {through: models.Propietarios,as:"propietarios"})
-      models.Propiedads.belongsToMany(models.Personas, {through: models.Arrendatarios})
+      models.Propiedad.belongsToMany(models.Persona, {through: models.Propietario, as: "propietarios"})
     }
   }
-  Propiedads.init({
+  Propiedad.init({
     cve_catastral: {
       type: DataTypes.STRING,
-      allowNull: false,
-      unique:true
+      allowNull: false
     },
     descripcion: {
       type: DataTypes.STRING,
@@ -30,12 +28,12 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     sequelize,
-    modelName: 'Propiedads',
-    tableName: 'propiedads',
+    modelName: 'Propiedad',
+    tableName: 'Propiedades',
     name: {
-      singular:'propiedads',
-      plural: 'propiedads'
+      singular:'propiedad',
+      plural: 'propiedades'
     }
   });
-  return Propiedads;
+  return Propiedad;
 };

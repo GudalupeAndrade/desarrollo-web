@@ -3,7 +3,7 @@ const models = require('../Renta-Relaciones/models');
 const create = async function(RFC,Nombre)
 {  
  
-    const Persona = await models.Personas.create(
+    const persona = await models.Persona.create(
         {
             RFC:RFC,
             Nombre:Nombre,
@@ -12,14 +12,14 @@ const create = async function(RFC,Nombre)
             
         }
     );
-    console.log(JSON.stringify(Persona));
-        return Persona
+    console.log(JSON.stringify(persona));
+        return persona
 }
 
 
 const eliminarPersona = async function(RFC)
 {
-    const valor = await models.Personas.findOne({
+    const valor = await models.Persona.findOne({
         where:{
             RFC:RFC
         }
@@ -30,13 +30,13 @@ const eliminarPersona = async function(RFC)
 
 const leerPersonas = async function()
 {
-    let valor = await models.Personas.findAll({});
+    let valor = await models.Persona.findAll({});
     //console.log(JSON.stringify(valor));
     return valor;
 }
 const leerPersona = async function(RFC)
 {
-    const valor = await models.Personas.findOne({
+    const valor = await models.Persona.findOne({
         where:{
             RFC:RFC
         }
@@ -47,7 +47,7 @@ const leerPersona = async function(RFC)
 
 const modificarPersona=async function(id,RFC,Nombre)
 {  
-    const valor = await models.Personas.findByPk(id)
+    const valor = await models.Persona.findByPk(id)
 
     await valor.update({
         RFC:RFC,

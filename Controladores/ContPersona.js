@@ -1,9 +1,9 @@
 const personas = require("../Servicios/ServiPersona");
 
 const CrearPersona = async function (req, res) {
-    let nuevo = { RFC: req.query.clave, nombre: req.query.descripcio };
+    let nuevo = { RFC: req.query.rfc, nombre: req.query.nombre };
 
-    await personas.create(nuevo.RFC,nuevo.nombre,nuevo.direccion);
+    await personas.create(nuevo.RFC,nuevo.nombre);
     await res.json("Persona Agregada");
 }
 

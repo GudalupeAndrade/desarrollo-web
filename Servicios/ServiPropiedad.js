@@ -3,7 +3,7 @@ const models = require('../Renta-Relaciones/models');
 const create = async function(cve_catastral,descripcion,direccion)
 {  
  
-    const Propiedad = await models.Propiedads.create(
+    const Propiedad = await models.Propiedad.create(
         {
             cve_catastral:cve_catastral,
             descripcion:descripcion,
@@ -20,7 +20,7 @@ const create = async function(cve_catastral,descripcion,direccion)
 
 const eliminarPropiedad = async function(clave)
 {
-    const propied = await models.Propiedads.findOne({
+    const propied = await models.Propiedad.findOne({
         where:{
             cve_catastral:clave
         }
@@ -31,13 +31,13 @@ const eliminarPropiedad = async function(clave)
 
 const leerPropiedades = async function()
 {
-    let propieds = await models.Propiedads.findAll({});
+    let propieds = await models.Propiedad.findAll({});
     //console.log(JSON.stringify(propieds));
     return propieds;
 }
 const leerPropiedad = async function(clave)
 {
-    const propieds = await models.Propiedads.findOne({
+    const propieds = await models.Propiedad.findOne({
         where:{
             cve_catastral:clave
         }
@@ -48,7 +48,7 @@ const leerPropiedad = async function(clave)
 
 const modificarPropiedad=async function(id,cve_catastral,descripcion,direccion)
 {  
-    const propied = await models.Propiedads.findByPk(id)
+    const propied = await models.Propiedad.findByPk(id)
 
     await propied.update({
         cve_catastral:cve_catastral,
